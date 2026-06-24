@@ -1,0 +1,651 @@
+CHIP Multiplier {
+
+IN a[16], b[16];
+OUT outlow[16], outhigh[16];
+
+PARTS:
+
+// -------- Partial Products --------
+
+// a * b0
+ // a * b0
+And(a=a[0], b=b[0], out=p0x0);
+And(a=a[1], b=b[0], out=p0x1);
+And(a=a[2], b=b[0], out=p0x2);
+And(a=a[3], b=b[0], out=p0x3);
+And(a=a[4], b=b[0], out=p0x4);
+And(a=a[5], b=b[0], out=p0x5);
+And(a=a[6], b=b[0], out=p0x6);
+And(a=a[7], b=b[0], out=p0x7);
+And(a=a[8], b=b[0], out=p0x8);
+And(a=a[9], b=b[0], out=p0x9);
+And(a=a[10], b=b[0], out=p0x10);
+And(a=a[11], b=b[0], out=p0x11);
+And(a=a[12], b=b[0], out=p0x12);
+And(a=a[13], b=b[0], out=p0x13);
+And(a=a[14], b=b[0], out=p0x14);
+And(a=a[15], b=b[0], out=p0x15);
+
+
+// a * b1
+And(a=a[0], b=b[1], out=p1x0);
+And(a=a[1], b=b[1], out=p1x1);
+And(a=a[2], b=b[1], out=p1x2);
+And(a=a[3], b=b[1], out=p1x3);
+And(a=a[4], b=b[1], out=p1x4);
+And(a=a[5], b=b[1], out=p1x5);
+And(a=a[6], b=b[1], out=p1x6);
+And(a=a[7], b=b[1], out=p1x7);
+And(a=a[8], b=b[1], out=p1x8);
+And(a=a[9], b=b[1], out=p1x9);
+And(a=a[10], b=b[1], out=p1x10);
+And(a=a[11], b=b[1], out=p1x11);
+And(a=a[12], b=b[1], out=p1x12);
+And(a=a[13], b=b[1], out=p1x13);
+And(a=a[14], b=b[1], out=p1x14);
+And(a=a[15], b=b[1], out=p1x15);
+
+
+// a * b2
+And(a=a[0], b=b[2], out=p2x0);
+And(a=a[1], b=b[2], out=p2x1);
+And(a=a[2], b=b[2], out=p2x2);
+And(a=a[3], b=b[2], out=p2x3);
+And(a=a[4], b=b[2], out=p2x4);
+And(a=a[5], b=b[2], out=p2x5);
+And(a=a[6], b=b[2], out=p2x6);
+And(a=a[7], b=b[2], out=p2x7);
+And(a=a[8], b=b[2], out=p2x8);
+And(a=a[9], b=b[2], out=p2x9);
+And(a=a[10], b=b[2], out=p2x10);
+And(a=a[11], b=b[2], out=p2x11);
+And(a=a[12], b=b[2], out=p2x12);
+And(a=a[13], b=b[2], out=p2x13);
+And(a=a[14], b=b[2], out=p2x14);
+And(a=a[15], b=b[2], out=p2x15);
+
+
+// a * b3
+And(a=a[0], b=b[3], out=p3x0);
+And(a=a[1], b=b[3], out=p3x1);
+And(a=a[2], b=b[3], out=p3x2);
+And(a=a[3], b=b[3], out=p3x3);
+And(a=a[4], b=b[3], out=p3x4);
+And(a=a[5], b=b[3], out=p3x5);
+And(a=a[6], b=b[3], out=p3x6);
+And(a=a[7], b=b[3], out=p3x7);
+And(a=a[8], b=b[3], out=p3x8);
+And(a=a[9], b=b[3], out=p3x9);
+And(a=a[10], b=b[3], out=p3x10);
+And(a=a[11], b=b[3], out=p3x11);
+And(a=a[12], b=b[3], out=p3x12);
+And(a=a[13], b=b[3], out=p3x13);
+And(a=a[14], b=b[3], out=p3x14);
+And(a=a[15], b=b[3], out=p3x15);
+
+
+// a * b4
+And(a=a[0], b=b[4], out=p4x0);
+And(a=a[1], b=b[4], out=p4x1);
+And(a=a[2], b=b[4], out=p4x2);
+And(a=a[3], b=b[4], out=p4x3);
+And(a=a[4], b=b[4], out=p4x4);
+And(a=a[5], b=b[4], out=p4x5);
+And(a=a[6], b=b[4], out=p4x6);
+And(a=a[7], b=b[4], out=p4x7);
+And(a=a[8], b=b[4], out=p4x8);
+And(a=a[9], b=b[4], out=p4x9);
+And(a=a[10], b=b[4], out=p4x10);
+And(a=a[11], b=b[4], out=p4x11);
+And(a=a[12], b=b[4], out=p4x12);
+And(a=a[13], b=b[4], out=p4x13);
+And(a=a[14], b=b[4], out=p4x14);
+And(a=a[15], b=b[4], out=p4x15);
+
+
+// a * b5
+And(a=a[0], b=b[5], out=p5x0);
+And(a=a[1], b=b[5], out=p5x1);
+And(a=a[2], b=b[5], out=p5x2);
+And(a=a[3], b=b[5], out=p5x3);
+And(a=a[4], b=b[5], out=p5x4);
+And(a=a[5], b=b[5], out=p5x5);
+And(a=a[6], b=b[5], out=p5x6);
+And(a=a[7], b=b[5], out=p5x7);
+And(a=a[8], b=b[5], out=p5x8);
+And(a=a[9], b=b[5], out=p5x9);
+And(a=a[10], b=b[5], out=p5x10);
+And(a=a[11], b=b[5], out=p5x11);
+And(a=a[12], b=b[5], out=p5x12);
+And(a=a[13], b=b[5], out=p5x13);
+And(a=a[14], b=b[5], out=p5x14);
+And(a=a[15], b=b[5], out=p5x15);
+
+And(a=a[0], b=b[6], out=p6x0);
+And(a=a[1], b=b[6], out=p6x1);
+And(a=a[2], b=b[6], out=p6x2);
+And(a=a[3], b=b[6], out=p6x3);
+And(a=a[4], b=b[6], out=p6x4);
+And(a=a[5], b=b[6], out=p6x5);
+And(a=a[6], b=b[6], out=p6x6);
+And(a=a[7], b=b[6], out=p6x7);
+And(a=a[8], b=b[6], out=p6x8);
+And(a=a[9], b=b[6], out=p6x9);
+And(a=a[10], b=b[6], out=p6x10);
+And(a=a[11], b=b[6], out=p6x11);
+And(a=a[12], b=b[6], out=p6x12);
+And(a=a[13], b=b[6], out=p6x13);
+And(a=a[14], b=b[6], out=p6x14);
+And(a=a[15], b=b[6], out=p6x15);
+
+
+And(a=a[0], b=b[7], out=p7x0);
+And(a=a[1], b=b[7], out=p7x1);
+And(a=a[2], b=b[7], out=p7x2);
+And(a=a[3], b=b[7], out=p7x3);
+And(a=a[4], b=b[7], out=p7x4);
+And(a=a[5], b=b[7], out=p7x5);
+And(a=a[6], b=b[7], out=p7x6);
+And(a=a[7], b=b[7], out=p7x7);
+And(a=a[8], b=b[7], out=p7x8);
+And(a=a[9], b=b[7], out=p7x9);
+And(a=a[10], b=b[7], out=p7x10);
+And(a=a[11], b=b[7], out=p7x11);
+And(a=a[12], b=b[7], out=p7x12);
+And(a=a[13], b=b[7], out=p7x13);
+And(a=a[14], b=b[7], out=p7x14);
+And(a=a[15], b=b[7], out=p7x15);
+
+And(a=a[0], b=b[8], out=p8x0);
+And(a=a[1], b=b[8], out=p8x1);
+And(a=a[2], b=b[8], out=p8x2);
+And(a=a[3], b=b[8], out=p8x3);
+And(a=a[4], b=b[8], out=p8x4);
+And(a=a[5], b=b[8], out=p8x5);
+And(a=a[6], b=b[8], out=p8x6);
+And(a=a[7], b=b[8], out=p8x7);
+And(a=a[8], b=b[8], out=p8x8);
+And(a=a[9], b=b[8], out=p8x9);
+And(a=a[10], b=b[8], out=p8x10);
+And(a=a[11], b=b[8], out=p8x11);
+And(a=a[12], b=b[8], out=p8x12);
+And(a=a[13], b=b[8], out=p8x13);
+And(a=a[14], b=b[8], out=p8x14);
+And(a=a[15], b=b[8], out=p8x15);
+
+And(a=a[0], b=b[9], out=p9x0);
+And(a=a[1], b=b[9], out=p9x1);
+And(a=a[2], b=b[9], out=p9x2);
+And(a=a[3], b=b[9], out=p9x3);
+And(a=a[4], b=b[9], out=p9x4);
+And(a=a[5], b=b[9], out=p9x5);
+And(a=a[6], b=b[9], out=p9x6);
+And(a=a[7], b=b[9], out=p9x7);
+And(a=a[8], b=b[9], out=p9x8);
+And(a=a[9], b=b[9], out=p9x9);
+And(a=a[10], b=b[9], out=p9x10);
+And(a=a[11], b=b[9], out=p9x11);
+And(a=a[12], b=b[9], out=p9x12);
+And(a=a[13], b=b[9], out=p9x13);
+And(a=a[14], b=b[9], out=p9x14);
+And(a=a[15], b=b[9], out=p9x15);
+
+And(a=a[0], b=b[10], out=p10x0);
+And(a=a[1], b=b[10], out=p10x1);
+And(a=a[2], b=b[10], out=p10x2);
+And(a=a[3], b=b[10], out=p10x3);
+And(a=a[4], b=b[10], out=p10x4);
+And(a=a[5], b=b[10], out=p10x5);
+And(a=a[6], b=b[10], out=p10x6);
+And(a=a[7], b=b[10], out=p10x7);
+And(a=a[8], b=b[10], out=p10x8);
+And(a=a[9], b=b[10], out=p10x9);
+And(a=a[10], b=b[10], out=p10x10);
+And(a=a[11], b=b[10], out=p10x11);
+And(a=a[12], b=b[10], out=p10x12);
+And(a=a[13], b=b[10], out=p10x13);
+And(a=a[14], b=b[10], out=p10x14);
+And(a=a[15], b=b[10], out=p10x15);
+
+
+And(a=a[0], b=b[11], out=p11x0);
+And(a=a[1], b=b[11], out=p11x1);
+And(a=a[2], b=b[11], out=p11x2);
+And(a=a[3], b=b[11], out=p11x3);
+And(a=a[4], b=b[11], out=p11x4);
+And(a=a[5], b=b[11], out=p11x5);
+And(a=a[6], b=b[11], out=p11x6);
+And(a=a[7], b=b[11], out=p11x7);
+And(a=a[8], b=b[11], out=p11x8);
+And(a=a[9], b=b[11], out=p11x9);
+And(a=a[10], b=b[11], out=p11x10);
+And(a=a[11], b=b[11], out=p11x11);
+And(a=a[12], b=b[11], out=p11x12);
+And(a=a[13], b=b[11], out=p11x13);
+And(a=a[14], b=b[11], out=p11x14);
+And(a=a[15], b=b[11], out=p11x15);
+
+And(a=a[0], b=b[12], out=p12x0);
+And(a=a[1], b=b[12], out=p12x1);
+And(a=a[2], b=b[12], out=p12x2);
+And(a=a[3], b=b[12], out=p12x3);
+And(a=a[4], b=b[12], out=p12x4);
+And(a=a[5], b=b[12], out=p12x5);
+And(a=a[6], b=b[12], out=p12x6);
+And(a=a[7], b=b[12], out=p12x7);
+And(a=a[8], b=b[12], out=p12x8);
+And(a=a[9], b=b[12], out=p12x9);
+And(a=a[10], b=b[12], out=p12x10);
+And(a=a[11], b=b[12], out=p12x11);
+And(a=a[12], b=b[12], out=p12x12);
+And(a=a[13], b=b[12], out=p12x13);
+And(a=a[14], b=b[12], out=p12x14);
+And(a=a[15], b=b[12], out=p12x15);
+
+And(a=a[0], b=b[13], out=p13x0);
+And(a=a[1], b=b[13], out=p13x1);
+And(a=a[2], b=b[13], out=p13x2);
+And(a=a[3], b=b[13], out=p13x3);
+And(a=a[4], b=b[13], out=p13x4);
+And(a=a[5], b=b[13], out=p13x5);
+And(a=a[6], b=b[13], out=p13x6);
+And(a=a[7], b=b[13], out=p13x7);
+And(a=a[8], b=b[13], out=p13x8);
+And(a=a[9], b=b[13], out=p13x9);
+And(a=a[10], b=b[13], out=p13x10);
+And(a=a[11], b=b[13], out=p13x11);
+And(a=a[12], b=b[13], out=p13x12);
+And(a=a[13], b=b[13], out=p13x13);
+And(a=a[14], b=b[13], out=p13x14);
+And(a=a[15], b=b[13], out=p13x15);
+
+
+And(a=a[0], b=b[14], out=p14x0);
+And(a=a[1], b=b[14], out=p14x1);
+And(a=a[2], b=b[14], out=p14x2);
+And(a=a[3], b=b[14], out=p14x3);
+And(a=a[4], b=b[14], out=p14x4);
+And(a=a[5], b=b[14], out=p14x5);
+And(a=a[6], b=b[14], out=p14x6);
+And(a=a[7], b=b[14], out=p14x7);
+And(a=a[8], b=b[14], out=p14x8);
+And(a=a[9], b=b[14], out=p14x9);
+And(a=a[10], b=b[14], out=p14x10);
+And(a=a[11], b=b[14], out=p14x11);
+And(a=a[12], b=b[14], out=p14x12);
+And(a=a[13], b=b[14], out=p14x13);
+And(a=a[14], b=b[14], out=p14x14);
+And(a=a[15], b=b[14], out=p14x15);
+
+And(a=a[0], b=b[15], out=p15x0);
+And(a=a[1], b=b[15], out=p15x1);
+And(a=a[2], b=b[15], out=p15x2);
+And(a=a[3], b=b[15], out=p15x3);
+And(a=a[4], b=b[15], out=p15x4);
+And(a=a[5], b=b[15], out=p15x5);
+And(a=a[6], b=b[15], out=p15x6);
+And(a=a[7], b=b[15], out=p15x7);
+And(a=a[8], b=b[15], out=p15x8);
+And(a=a[9], b=b[15], out=p15x9);
+And(a=a[10], b=b[15], out=p15x10);
+And(a=a[11], b=b[15], out=p15x11);
+And(a=a[12], b=b[15], out=p15x12);
+And(a=a[13], b=b[15], out=p15x13);
+And(a=a[14], b=b[15], out=p15x14);
+And(a=a[15], b=b[15], out=p15x15);
+
+
+
+// -------- Shift rows --------
+// row0
+
+
+
+// -------- CSA Reduction --
+//first csa
+// -------- FIRST CSA (shifted rows) --------
+
+CSA32(
+
+alow[0]=p0x0, alow[1]=p0x1, alow[2]=p0x2, alow[3]=p0x3,
+alow[4]=p0x4, alow[5]=p0x5, alow[6]=p0x6, alow[7]=p0x7,
+alow[8]=p0x8, alow[9]=p0x9, alow[10]=p0x10, alow[11]=p0x11,
+alow[12]=p0x12, alow[13]=p0x13, alow[14]=p0x14, alow[15]=p0x15,
+
+ahigh[0]=false, ahigh[1]=false, ahigh[2]=false, ahigh[3]=false,
+ahigh[4]=false, ahigh[5]=false, ahigh[6]=false, ahigh[7]=false,
+ahigh[8]=false, ahigh[9]=false, ahigh[10]=false, ahigh[11]=false,
+ahigh[12]=false, ahigh[13]=false, ahigh[14]=false, ahigh[15]=false,
+
+
+// p1 shifted by 1
+
+blow[0]=false,
+blow[1]=p1x0,
+blow[2]=p1x1,
+blow[3]=p1x2,
+blow[4]=p1x3,
+blow[5]=p1x4,
+blow[6]=p1x5,
+blow[7]=p1x6,
+blow[8]=p1x7,
+blow[9]=p1x8,
+blow[10]=p1x9,
+blow[11]=p1x10,
+blow[12]=p1x11,
+blow[13]=p1x12,
+blow[14]=p1x13,
+blow[15]=p1x14,
+
+bhigh[0]=p1x15,
+bhigh[1]=false, bhigh[2]=false, bhigh[3]=false,
+bhigh[4]=false, bhigh[5]=false, bhigh[6]=false, bhigh[7]=false,
+bhigh[8]=false, bhigh[9]=false, bhigh[10]=false, bhigh[11]=false,
+bhigh[12]=false, bhigh[13]=false, bhigh[14]=false, bhigh[15]=false,
+
+
+// p2 shifted by 2
+
+clow[0]=false,
+clow[1]=false,
+clow[2]=p2x0,
+clow[3]=p2x1,
+clow[4]=p2x2,
+clow[5]=p2x3,
+clow[6]=p2x4,
+clow[7]=p2x5,
+clow[8]=p2x6,
+clow[9]=p2x7,
+clow[10]=p2x8,
+clow[11]=p2x9,
+clow[12]=p2x10,
+clow[13]=p2x11,
+clow[14]=p2x12,
+clow[15]=p2x13,
+
+chigh[0]=p2x14,
+chigh[1]=p2x15,
+chigh[2]=false, chigh[3]=false,
+chigh[4]=false, chigh[5]=false, chigh[6]=false, chigh[7]=false,
+chigh[8]=false, chigh[9]=false, chigh[10]=false, chigh[11]=false,
+chigh[12]=false, chigh[13]=false, chigh[14]=false, chigh[15]=false,
+
+
+sumlow=s1low,
+sumhigh=s1high,
+carrylow=c1low,
+carryhigh=c1high
+
+);
+
+//second CSA
+CSA32(
+
+alow[0]=false, alow[1]=false, alow[2]=false,
+alow[3]=p3x0, alow[4]=p3x1, alow[5]=p3x2, alow[6]=p3x3,
+alow[7]=p3x4, alow[8]=p3x5, alow[9]=p3x6, alow[10]=p3x7,
+alow[11]=p3x8, alow[12]=p3x9, alow[13]=p3x10,
+alow[14]=p3x11, alow[15]=p3x12,
+
+ahigh[0]=p3x13, ahigh[1]=p3x14, ahigh[2]=p3x15,
+ahigh[3]=false, ahigh[4]=false, ahigh[5]=false,
+ahigh[6]=false, ahigh[7]=false, ahigh[8]=false,
+ahigh[9]=false, ahigh[10]=false, ahigh[11]=false,
+ahigh[12]=false, ahigh[13]=false, ahigh[14]=false, ahigh[15]=false,
+
+
+blow[0]=false, blow[1]=false, blow[2]=false, blow[3]=false,
+blow[4]=p4x0, blow[5]=p4x1, blow[6]=p4x2, blow[7]=p4x3,
+blow[8]=p4x4, blow[9]=p4x5, blow[10]=p4x6, blow[11]=p4x7,
+blow[12]=p4x8, blow[13]=p4x9, blow[14]=p4x10, blow[15]=p4x11,
+
+bhigh[0]=p4x12, bhigh[1]=p4x13, bhigh[2]=p4x14, bhigh[3]=p4x15,
+bhigh[4]=false, bhigh[5]=false, bhigh[6]=false,
+bhigh[7]=false, bhigh[8]=false, bhigh[9]=false,
+bhigh[10]=false, bhigh[11]=false, bhigh[12]=false,
+bhigh[13]=false, bhigh[14]=false, bhigh[15]=false,
+
+
+clow[0]=false, clow[1]=false, clow[2]=false, clow[3]=false, clow[4]=false,
+clow[5]=p5x0, clow[6]=p5x1, clow[7]=p5x2, clow[8]=p5x3,
+clow[9]=p5x4, clow[10]=p5x5, clow[11]=p5x6, clow[12]=p5x7,
+clow[13]=p5x8, clow[14]=p5x9, clow[15]=p5x10,
+
+chigh[0]=p5x11, chigh[1]=p5x12, chigh[2]=p5x13, chigh[3]=p5x14,
+chigh[4]=p5x15, chigh[5]=false, chigh[6]=false,
+chigh[7]=false, chigh[8]=false, chigh[9]=false,
+chigh[10]=false, chigh[11]=false, chigh[12]=false,
+chigh[13]=false, chigh[14]=false, chigh[15]=false,
+
+
+sumlow=s2low,
+sumhigh=s2high,
+carrylow=c2low,
+carryhigh=c2high
+);
+
+
+
+
+//4th csa
+//4th CSA
+CSA32(
+
+alow[0]=false, alow[1]=false, alow[2]=false,
+alow[3]=false, alow[4]=false, alow[5]=false,
+alow[6]=false, alow[7]=false, alow[8]=false,
+alow[9]=p9x0, alow[10]=p9x1, alow[11]=p9x2,
+alow[12]=p9x3, alow[13]=p9x4, alow[14]=p9x5,
+alow[15]=p9x6,
+
+ahigh[0]=p9x7, ahigh[1]=p9x8, ahigh[2]=p9x9,
+ahigh[3]=p9x10, ahigh[4]=p9x11, ahigh[5]=p9x12,
+ahigh[6]=p9x13, ahigh[7]=p9x14, ahigh[8]=p9x15,
+ahigh[9]=false, ahigh[10]=false, ahigh[11]=false,
+ahigh[12]=false, ahigh[13]=false, ahigh[14]=false,
+ahigh[15]=false,
+
+
+blow[0]=false, blow[1]=false, blow[2]=false,
+blow[3]=false, blow[4]=false, blow[5]=false,
+blow[6]=false, blow[7]=false, blow[8]=false,
+blow[9]=false, blow[10]=p10x0, blow[11]=p10x1,
+blow[12]=p10x2, blow[13]=p10x3, blow[14]=p10x4,
+blow[15]=p10x5,
+
+bhigh[0]=p10x6, bhigh[1]=p10x7, bhigh[2]=p10x8,
+bhigh[3]=p10x9, bhigh[4]=p10x10, bhigh[5]=p10x11,
+bhigh[6]=p10x12, bhigh[7]=p10x13, bhigh[8]=p10x14,
+bhigh[9]=p10x15, bhigh[10]=false, bhigh[11]=false,
+bhigh[12]=false, bhigh[13]=false, bhigh[14]=false,
+bhigh[15]=false,
+
+
+clow[0]=false, clow[1]=false, clow[2]=false,
+clow[3]=false, clow[4]=false, clow[5]=false,
+clow[6]=false, clow[7]=false, clow[8]=false,
+clow[9]=false, clow[10]=false, clow[11]=p11x0,
+clow[12]=p11x1, clow[13]=p11x2, clow[14]=p11x3,
+clow[15]=p11x4,
+
+chigh[0]=p11x5, chigh[1]=p11x6, chigh[2]=p11x7,
+chigh[3]=p11x8, chigh[4]=p11x9, chigh[5]=p11x10,
+chigh[6]=p11x11, chigh[7]=p11x12, chigh[8]=p11x13,
+chigh[9]=p11x14, chigh[10]=p11x15,
+chigh[11]=false, chigh[12]=false,
+chigh[13]=false, chigh[14]=false, chigh[15]=false,
+
+
+sumlow=s4low,
+sumhigh=s4high,
+carrylow=c4low,
+carryhigh=c4high
+
+);
+
+//5th csa
+//5th CSA
+CSA32(
+
+alow[0]=false, alow[1]=false, alow[2]=false,
+alow[3]=false, alow[4]=false, alow[5]=false,
+alow[6]=false, alow[7]=false, alow[8]=false,
+alow[9]=false, alow[10]=false, alow[11]=false,
+alow[12]=p12x0, alow[13]=p12x1, alow[14]=p12x2,
+alow[15]=p12x3,
+
+ahigh[0]=p12x4, ahigh[1]=p12x5, ahigh[2]=p12x6,
+ahigh[3]=p12x7, ahigh[4]=p12x8, ahigh[5]=p12x9,
+ahigh[6]=p12x10, ahigh[7]=p12x11, ahigh[8]=p12x12,
+ahigh[9]=p12x13, ahigh[10]=p12x14, ahigh[11]=p12x15,
+ahigh[12]=false, ahigh[13]=false, ahigh[14]=false, ahigh[15]=false,
+
+
+blow[0]=false, blow[1]=false, blow[2]=false,
+blow[3]=false, blow[4]=false, blow[5]=false,
+blow[6]=false, blow[7]=false, blow[8]=false,
+blow[9]=false, blow[10]=false, blow[11]=false,
+blow[12]=false, blow[13]=p13x0, blow[14]=p13x1,
+blow[15]=p13x2,
+
+bhigh[0]=p13x3, bhigh[1]=p13x4, bhigh[2]=p13x5,
+bhigh[3]=p13x6, bhigh[4]=p13x7, bhigh[5]=p13x8,
+bhigh[6]=p13x9, bhigh[7]=p13x10, bhigh[8]=p13x11,
+bhigh[9]=p13x12, bhigh[10]=p13x13, bhigh[11]=p13x14,
+bhigh[12]=p13x15,
+bhigh[13]=false, bhigh[14]=false, bhigh[15]=false,
+
+
+clow[0]=false, clow[1]=false, clow[2]=false,
+clow[3]=false, clow[4]=false, clow[5]=false,
+clow[6]=false, clow[7]=false, clow[8]=false,
+clow[9]=false, clow[10]=false, clow[11]=false,
+clow[12]=false, clow[13]=false, clow[14]=p14x0,
+clow[15]=p14x1,
+
+chigh[0]=p14x2, chigh[1]=p14x3, chigh[2]=p14x4,
+chigh[3]=p14x5, chigh[4]=p14x6, chigh[5]=p14x7,
+chigh[6]=p14x8, chigh[7]=p14x9, chigh[8]=p14x10,
+chigh[9]=p14x11, chigh[10]=p14x12, chigh[11]=p14x13,
+chigh[12]=p14x14, chigh[13]=p14x15,
+chigh[14]=false, chigh[15]=false,
+
+
+sumlow=s5low,
+sumhigh=s5high,
+carrylow=c5low,
+carryhigh=c5high
+
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CSA32(
+    alow[0..5]=false, alow[6]=p6x0, alow[7]=p6x1, alow[8]=p6x2, alow[9]=p6x3, alow[10]=p6x4, alow[11]=p6x5, alow[12]=p6x6, alow[13]=p6x7, alow[14]=p6x8, alow[15]=p6x9,
+    ahigh[0]=p6x10, ahigh[1]=p6x11, ahigh[2]=p6x12, ahigh[3]=p6x13, ahigh[4]=p6x14, ahigh[5]=p6x15, ahigh[6..15]=false,
+
+    blow[0..6]=false, blow[7]=p7x0, blow[8]=p7x1, blow[9]=p7x2, blow[10]=p7x3, blow[11]=p7x4, blow[12]=p7x5, blow[13]=p7x6, blow[14]=p7x7, blow[15]=p7x8,
+    bhigh[0]=p7x9, bhigh[1]=p7x10, bhigh[2]=p7x11, bhigh[3]=p7x12, bhigh[4]=p7x13, bhigh[5]=p7x14, bhigh[6]=p7x15, bhigh[7..15]=false,
+
+    clow[0..7]=false, clow[8]=p8x0, clow[9]=p8x1, clow[10]=p8x2, clow[11]=p8x3, clow[12]=p8x4, clow[13]=p8x5, clow[14]=p8x6, clow[15]=p8x7,
+    chigh[0]=p8x8, chigh[1]=p8x9, chigh[2]=p8x10, chigh[3]=p8x11, chigh[4]=p8x12, chigh[5]=p8x13, chigh[6]=p8x14, chigh[7]=p8x15, chigh[8..15]=false,
+
+    sumlow=s3low, sumhigh=s3high, carrylow=c3low, carryhigh=c3high
+);
+
+
+CSA32(
+    alow[0..14]=false, alow[15]=p15x0,
+    ahigh[0]=p15x1, ahigh[1]=p15x2, ahigh[2]=p15x3, ahigh[3]=p15x4, ahigh[4]=p15x5, ahigh[5]=p15x6, ahigh[6]=p15x7, ahigh[7]=p15x8, ahigh[8]=p15x9, ahigh[9]=p15x10, ahigh[10]=p15x11, ahigh[11]=p15x12, ahigh[12]=p15x13, ahigh[13]=p15x14, ahigh[14]=p15x15, ahigh[15]=false,
+    blow=false, bhigh=false, clow=false, chigh=false,
+    sumlow=p15BusLow, sumhigh=p15BusHigh
+);
+
+
+Shift01(inlow=c1low, inhigh=c1high, outlow=c1Slow, outhigh=c1Shigh);
+Shift01(inlow=c2low, inhigh=c2high, outlow=c2Slow, outhigh=c2Shigh);
+Shift01(inlow=c3low, inhigh=c3high, outlow=c3Slow, outhigh=c3Shigh);
+Shift01(inlow=c4low, inhigh=c4high, outlow=c4Slow, outhigh=c4Shigh);
+Shift01(inlow=c5low, inhigh=c5high, outlow=c5Slow, outhigh=c5Shigh);
+
+
+
+CSA32(alow=s1low, ahigh=s1high, blow=s2low, bhigh=s2high, clow=s3low, chigh=s3high,
+      sumlow=s6low, sumhigh=s6high, carrylow=c6low, carryhigh=c6high);
+
+CSA32(alow=s4low, ahigh=s4high, blow=s5low, bhigh=s5high, clow=c1Slow, chigh=c1Shigh,
+      sumlow=s7low, sumhigh=s7high, carrylow=c7low, carryhigh=c7high);
+
+CSA32(alow=c2Slow, ahigh=c2Shigh, blow=c3Slow, bhigh=c3Shigh, clow=c4Slow, chigh=c4Shigh,
+      sumlow=s8low, sumhigh=s8high, carrylow=c8low, carryhigh=c8high);
+
+
+Shift01(inlow=c6low, inhigh=c6high, outlow=c6Slow, outhigh=c6Shigh);
+Shift01(inlow=c7low, inhigh=c7high, outlow=c7Slow, outhigh=c7Shigh);
+Shift01(inlow=c8low, inhigh=c8high, outlow=c8Slow, outhigh=c8Shigh);
+
+
+
+CSA32(alow=s6low, ahigh=s6high, blow=s7low, bhigh=s7high, clow=s8low, chigh=s8high,
+      sumlow=s9low, sumhigh=s9high, carrylow=c9low, carryhigh=c9high);
+
+CSA32(alow=c6Slow, ahigh=c6Shigh, blow=c7Slow, bhigh=c7Shigh, clow=c8Slow, chigh=c8Shigh,
+      sumlow=s10low, sumhigh=s10high, carrylow=c10low, carryhigh=c10high);
+
+
+Shift01(inlow=c9low, inhigh=c9high, outlow=c9Slow, outhigh=c9Shigh);
+Shift01(inlow=c10low, inhigh=c10high, outlow=c10Slow, outhigh=c10Shigh);
+
+
+
+CSA32(alow=s9low, ahigh=s9high, blow=s10low, bhigh=s10high, clow=c5Slow, chigh=c5Shigh,
+      sumlow=s11low, sumhigh=s11high, carrylow=c11low, carryhigh=c11high);
+
+CSA32(alow=c9Slow, ahigh=c9Shigh, blow=c10Slow, bhigh=c10Shigh, clow=p15BusLow, chigh=p15BusHigh,
+      sumlow=s12low, sumhigh=s12high, carrylow=c12low, carryhigh=c12high);
+
+// Shift Carries from Layer 4
+Shift01(inlow=c11low, inhigh=c11high, outlow=c11Slow, outhigh=c11Shigh);
+Shift01(inlow=c12low, inhigh=c12high, outlow=c12Slow, outhigh=c12Shigh);
+
+
+
+CSA32(alow=s11low, ahigh=s11high, blow=s12low, bhigh=s12high, clow=c11Slow, chigh=c11Shigh,
+      sumlow=s13low, sumhigh=s13high, carrylow=c13low, carryhigh=c13high);
+
+// Shift Carries from Layer 5
+Shift01(inlow=c13low, inhigh=c13high, outlow=c13Slow, outhigh=c13Shigh);
+
+
+
+CSA32(alow=s13low, ahigh=s13high, blow=c13Slow, bhigh=c13Shigh, clow=c12Slow, chigh=c12Shigh,
+      sumlow=s14low, sumhigh=s14high, carrylow=c14low, carryhigh=c14high);
+
+// Shift Final Carry
+Shift01(inlow=c14low, inhigh=c14high, outlow=c14Slow, outhigh=c14Shigh);
+
+
+// -------- Final Addition --------
+Add32(alow=s14low, ahigh=s14high, blow=c14Slow, bhigh=c14Shigh, outlow=outlow, outhigh=outhigh);
+
+}

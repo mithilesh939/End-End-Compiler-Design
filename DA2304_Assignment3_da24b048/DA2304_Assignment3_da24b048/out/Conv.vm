@@ -1,0 +1,379 @@
+function Conv.new 0
+push constant 5
+call Memory.alloc 1
+pop pointer 0
+push argument 0
+pop this 4
+push constant 1
+pop this 1
+push constant 9
+call Array.new 1
+pop this 0
+push argument 0
+push argument 0
+call Math.multiply 2
+call Array.new 1
+pop this 2
+push pointer 0
+call Conv.calcOutputDim 1
+push pointer 0
+call Conv.calcOutputDim 1
+call Math.multiply 2
+call Array.new 1
+pop this 3
+push pointer 0
+return
+function Conv.initFilter 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_TOP_0
+push local 0
+push constant 9
+lt
+not
+if-goto WHILE_END_1
+push this 0
+push local 0
+add
+push argument 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_TOP_0
+label WHILE_END_1
+push constant 0
+return
+function Conv.getArrayInput 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+push argument 2
+pop this 4
+label WHILE_TOP_2
+push local 0
+push argument 2
+push argument 2
+call Math.multiply 2
+lt
+not
+if-goto WHILE_END_3
+push this 2
+push local 0
+add
+push argument 1
+push local 0
+add
+pop pointer 1
+push that 0
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_TOP_2
+label WHILE_END_3
+push constant 0
+return
+function Conv.calcOutputDim 0
+push argument 0
+pop pointer 0
+push this 4
+push constant 3
+lt
+not
+if-goto IF_FALSE_4
+push constant 0
+return
+goto IF_END_5
+label IF_FALSE_4
+label IF_END_5
+push this 4
+push constant 3
+sub
+push this 1
+call Math.divide 2
+push constant 1
+add
+return
+function Conv.conv2d 11
+push argument 0
+pop pointer 0
+push this 4
+push constant 3
+lt
+not
+if-goto IF_FALSE_6
+push constant 15
+call String.new 1
+push constant 73
+call String.appendChar 2
+push constant 110
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 111
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 109
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push constant 0
+return
+goto IF_END_7
+label IF_FALSE_6
+label IF_END_7
+push pointer 0
+call Conv.calcOutputDim 1
+pop local 0
+push constant 0
+pop local 8
+push constant 0
+pop local 1
+label WHILE_TOP_8
+push local 1
+push local 0
+lt
+not
+if-goto WHILE_END_9
+push constant 0
+pop local 2
+label WHILE_TOP_10
+push local 2
+push local 0
+lt
+not
+if-goto WHILE_END_11
+push constant 0
+pop local 5
+push constant 0
+pop local 3
+label WHILE_TOP_12
+push local 3
+push constant 3
+lt
+not
+if-goto WHILE_END_13
+push constant 0
+pop local 4
+label WHILE_TOP_14
+push local 4
+push constant 3
+lt
+not
+if-goto WHILE_END_15
+push local 1
+push this 1
+call Math.multiply 2
+push local 3
+add
+pop local 6
+push local 2
+push this 1
+call Math.multiply 2
+push local 4
+add
+pop local 7
+push this 2
+push local 6
+push this 4
+call Math.multiply 2
+push local 7
+add
+add
+pop pointer 1
+push that 0
+pop local 9
+push this 0
+push local 3
+push constant 3
+call Math.multiply 2
+push local 4
+add
+add
+pop pointer 1
+push that 0
+pop local 10
+push local 5
+push local 9
+push local 10
+call Math.multiply 2
+add
+pop local 5
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_TOP_14
+label WHILE_END_15
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_TOP_12
+label WHILE_END_13
+push this 3
+push local 8
+add
+push local 5
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 8
+push constant 1
+add
+pop local 8
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_TOP_10
+label WHILE_END_11
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_TOP_8
+label WHILE_END_9
+push constant 0
+return
+function Conv.printOutput 3
+push argument 0
+pop pointer 0
+push pointer 0
+call Conv.calcOutputDim 1
+pop local 0
+push constant 14
+call String.new 1
+push constant 79
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 112
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 105
+call String.appendChar 2
+push constant 120
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push constant 0
+pop local 1
+label WHILE_TOP_16
+push local 1
+push local 0
+lt
+not
+if-goto WHILE_END_17
+push constant 0
+pop local 2
+label WHILE_TOP_18
+push local 2
+push local 0
+lt
+not
+if-goto WHILE_END_19
+push this 3
+push local 1
+push local 0
+call Math.multiply 2
+push local 2
+add
+add
+pop pointer 1
+push that 0
+call Output.printInt 1
+pop temp 0
+push constant 32
+call Output.printChar 1
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_TOP_18
+label WHILE_END_19
+call Output.println 0
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_TOP_16
+label WHILE_END_17
+push constant 0
+return
+function Conv.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call Array.dispose 1
+pop temp 0
+push this 2
+call Array.dispose 1
+pop temp 0
+push this 3
+call Array.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return

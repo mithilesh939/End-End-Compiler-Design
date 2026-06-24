@@ -1,0 +1,76 @@
+// Main.jack
+// Driver program for Conv.
+// 5x5 test uses sequential input 1-25 with identity filter → should print center values.
+// 9x9 test (extra credit) uses sequential input 1-81 with identity filter.
+
+class Main {
+    function void main() {
+        var Conv c;
+        var Array input, filter;
+        var int i;
+
+        // ── 5x5 test ──────────────────────────────────────────────────────
+        // Input: sequential values 1 to 25 (row-major, easy to verify)
+        let input = Array.new(25);
+        let i = 0;
+        while (i < 25) {
+            let input[i] = i + 1;
+            let i = i + 1;
+        }
+
+        // Identity filter: passes through centre value of each window
+        //  0 0 0
+        //  0 1 0
+        //  0 0 0
+        // Expected 3x3 output (stride=1):
+        //  7  8  9
+        // 12 13 14
+        // 17 18 19
+        let filter = Array.new(9);
+        let filter[0] = 0;  let filter[1] = 0;  let filter[2] = 0;
+        let filter[3] = 0;  let filter[4] = 1;  let filter[5] = 0;
+        let filter[6] = 0;  let filter[7] = 0;  let filter[8] = 0;
+
+        do Output.printString("Output (5x5):");
+        do Output.println();
+
+        let c = Conv.new(5);
+        do c.initFilter(filter);
+        do c.getArrayInput(input, 5);
+        do c.conv2d();
+        do c.printOutput();
+        do c.dispose();
+        do input.dispose();
+        do filter.dispose();
+
+        // ── 9x9 test (extra credit) ───────────────────────────────────────
+        // Input: sequential 1..81, identity filter
+        // Output dim: floor((9-3)/1)+1 = 7
+        // Expected: centre values of each 3x3 window = inp[i+1,j+1] for i,j in 0..6
+        let input = Array.new(81);
+        let i = 0;
+        while (i < 81) {
+            let input[i] = i + 1;
+            let i = i + 1;
+        }
+
+        let filter = Array.new(9);
+        let filter[0] = 0;  let filter[1] = 0;  let filter[2] = 0;
+        let filter[3] = 0;  let filter[4] = 1;  let filter[5] = 0;
+        let filter[6] = 0;  let filter[7] = 0;  let filter[8] = 0;
+
+        do Output.printString("Output (9x9):");
+        do Output.println();
+
+        let c = Conv.new(9);
+        do c.initFilter(filter);
+        do c.getArrayInput(input, 9);
+        do c.conv2d();
+        do c.printOutput();
+        do c.dispose();
+        do input.dispose();
+        do filter.dispose();
+
+        return;
+    }
+}
